@@ -8,15 +8,15 @@ int main(void) {
         return -1;
     }
 
-    int64_t list_1[1001] = { 0 };
-    int64_t list_2[1001] = { 0 };
+    long long list_1[1001] = { 0 };
+    long long list_2[1001] = { 0 };
 
     getNumbers(list_1, list_2, file);
 
     fclose(file);
 
-    int64_t appearances = 0;
-    int64_t similarity = 0;
+    long long appearances = 0;
+    long long similarity = 0;
 
     for (int i = 0; i < 1001; i++) {
         for (int j = 0; j < 1001; j++) {
@@ -28,5 +28,5 @@ int main(void) {
         appearances = 0;
     }
 
-    printf("%lld", similarity);
+    printf("%ld", similarity);
 }

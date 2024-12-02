@@ -8,15 +8,15 @@ int main(void) {
         return -1;
     }
 
-    int64_t list_1[1001] = { 0 };
-    int64_t list_2[1001] = { 0 };
+    long long list_1[1001] = { 0 };
+    long long list_2[1001] = { 0 };
 
     getNumbers(list_1, list_2, file);
 
     fclose(file);
 
-    qsort(list_1, 1001, sizeof(int64_t), compare);
-    qsort(list_2, 1001, sizeof(int64_t), compare);
+    qsort(list_1, 1001, sizeof(long long), compare);
+    qsort(list_2, 1001, sizeof(long long), compare);
 
     int64_t distances[1001] = { 0 };
     int64_t sum_of_distances = 0;
@@ -25,5 +25,5 @@ int main(void) {
         sum_of_distances += llabs(list_1[i] - list_2[i]);
     }
 
-    printf("%llu", sum_of_distances);
+    printf("%ld", sum_of_distances);
 }

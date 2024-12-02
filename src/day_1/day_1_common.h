@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 int compare(const void* a, const void* b) {
-    int64_t number_a = * ( (int64_t*) a);
-    int64_t number_b = * ( (int64_t*) b);
+    long long number_a = * ( ( long long* ) a);
+    long long number_b = * ( ( long long* ) b);
 
     if (number_a > number_b) {
         return 1;
@@ -23,7 +23,7 @@ int isNumChar(const unsigned char in) {
     return 0;
 }
 
-void getNumbers(int64_t* list_1, int64_t* list_2, FILE* file) {
+void getNumbers(long long* list_1, long long* list_2, FILE* file) {
     unsigned char line[100] = { 0 };
     unsigned char read_buf[10] = { 0 };
 
