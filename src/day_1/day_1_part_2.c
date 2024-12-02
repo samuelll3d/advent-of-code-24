@@ -1,4 +1,4 @@
-#include <day_1_common.h>
+#include <common.h>
 
 int main(void) {
     FILE* file = fopen("input.txt", "r");
