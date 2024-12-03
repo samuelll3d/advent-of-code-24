@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int getSafety_part1(const long* levels, const long levelCount) {
+int getSafety(const long* levels, const long levelCount) {
     long lastDiff = 0;
 
     for (int j = 1; j <= levelCount; j++) {
@@ -31,36 +31,6 @@ int getSafety_part1(const long* levels, const long levelCount) {
     }
 
     return 0;
-}
-
-int getSafety_part2(const long* levels, const long levelCount) {
-    long lastDiff = 0;
-
-    for (int i = 1; i <= levelCount; i++) {
-        if (i == levelCount) {
-            return 0;
-        }
-
-        const long diff = levels[i - 1] - levels[i];
-
-        if (llabs(diff) > 3 || diff == 0) {
-            return i;
-        }
-
-        if (diff > 0 && lastDiff >= 0) {
-            lastDiff = diff;
-            continue;
-        }
-
-        if (diff < 0 && lastDiff <= 0) {
-            lastDiff = diff;
-            continue;
-        }
-
-        return i;
-    }
-
-    return -1;
 }
 
 int getLine(FILE* file, unsigned char* line, int buf_len) {

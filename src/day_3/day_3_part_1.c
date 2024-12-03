@@ -18,8 +18,8 @@ bool is_number_character(const unsigned char _char) {
 }
 
 int main(void) {
-    unsigned char mul_instruction[] = "mul(%,%)";
-    size_t mul_instr_len = strlen((const char*)mul_instruction);
+    const unsigned char mul_instruction[] = "mul(%,%)";
+    const size_t mul_instr_len = strlen(mul_instruction);
 
     FILE* file = fopen("input.txt", "r");
 
@@ -28,15 +28,14 @@ int main(void) {
         return -1;
     }
 
-    unsigned int read_buf_len = INT16_MAX;
-    unsigned char read_buf[read_buf_len];
-    memset(read_buf, 0, sizeof(unsigned char) * INT16_MAX);
+    const unsigned int read_buf_len = INT16_MAX;
+    unsigned char read_buf[read_buf_len] = { 0 };
 
     mul_instr instructions[1000];
     unsigned int instructions_read = 0;
 
     for (;;) {
-        size_t read = fread(read_buf, sizeof(unsigned char), INT16_MAX, file);
+        const size_t read = fread(read_buf, sizeof(unsigned char), INT16_MAX, file);
         for (size_t i = 0; i < read; i++) {
             int instr_args[2] = { 0 };
             int instr_arg_index = 0;
@@ -47,7 +46,6 @@ int main(void) {
                 if (mul_instruction[j] == '%') {
                     unsigned char num_buf[10] = { 0 };
                     unsigned int num_digits = 0;
-                    unsigned int total_digits_read = 0;
 
                     for (; num_digits < 10; num_digits++) {
                         num_buf[num_digits] = read_buf[i + j + num_digits + read_digits_offset];
@@ -63,7 +61,6 @@ int main(void) {
                         num_buf[num_digits] = '\n';
                         instr_args[instr_arg_index] = (int)strtol(num_buf, NULL, 10);
                         read_digits_offset += num_digits - 1;
-                        total_digits_read += num_digits;
                         instr_arg_index++;
                         continue;
                     }

@@ -9,12 +9,6 @@ typedef struct mul_instr_data {
     int y;
 } mul_instr_data;
 
-typedef struct instr {
-    const unsigned char* instruction;
-    const void* data;
-    const size_t len;
-} instruction;
-
 bool is_number_character(const unsigned char _char) {
     if (_char == '0' || _char == '1' || _char == '1' || _char == '2' || _char == '3' || _char == '4'
         || _char == '5' || _char == '6' || _char == '7' || _char == '8' || _char == '9') {
@@ -113,16 +107,15 @@ int main(void) {
         return -1;
     }
 
-    unsigned int read_buf_len = INT16_MAX;
-    unsigned char read_buf[read_buf_len];
-    memset(read_buf, 0, sizeof(unsigned char) * INT16_MAX);
+    const unsigned int read_buf_len = INT16_MAX;
+    unsigned char read_buf[read_buf_len] = { 0 };
 
     mul_instr_data found_instructions[1000];
     unsigned int instructions_read = 0;
     bool mul_enabled = true;
 
     for (;;) {
-        size_t read = fread(read_buf, sizeof(unsigned char), INT16_MAX, file);
+        const size_t read = fread(read_buf, sizeof(unsigned char), INT16_MAX, file);
         for (size_t i = 0; i < read; i++) {
             if (read_buf[i] == 'm' && mul_enabled) {
                 unsigned int found = find_multiply_instruction(read_buf, i, &found_instructions[instructions_read]);

@@ -23,7 +23,7 @@ int main(void) {
         int levelCount;
         long* levels = getLevels(line_buf, lineLen, &levelCount);
 
-        int res = getSafety_part1(levels, levelCount);
+        int res = getSafety(levels, levelCount);
         if (!res) {
             int found_safe = 0;
             long levels_one_removed[levelCount - 1];
@@ -35,7 +35,7 @@ int main(void) {
                     levels_one_removed[index] = levels[j];
                     index++;
                 }
-                if (getSafety_part1(levels_one_removed, levelCount - 1)) {
+                if (getSafety(levels_one_removed, levelCount - 1)) {
                     found_safe = 1;
                     break;
                 }

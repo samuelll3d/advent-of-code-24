@@ -23,7 +23,7 @@ int main(void) {
         int levelCount;
         long* levels = getLevels(line_buf, lineLen, &levelCount);
 
-        report_is_safe[line] = getSafety_part1(levels, levelCount);
+        report_is_safe[line] = getSafety(levels, levelCount);
     }
 
     unsigned int safe_reports = 0;
