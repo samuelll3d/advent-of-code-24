@@ -108,7 +108,8 @@ int main(void) {
     }
 
     const unsigned int read_buf_len = INT16_MAX;
-    unsigned char read_buf[read_buf_len] = { 0 };
+    unsigned char read_buf[read_buf_len];
+    memset(read_buf, 0, sizeof(unsigned char) * read_buf_len);
 
     mul_instr_data found_instructions[1000];
     unsigned int instructions_read = 0;
